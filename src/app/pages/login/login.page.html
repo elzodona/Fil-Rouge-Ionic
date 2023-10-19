@@ -1,0 +1,30 @@
+
+
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="header">
+    <h1>Login</h1>
+    <img src="assets/logo.png" alt="">
+  </div>
+  
+  <ion-text color="danger" *ngIf="loginForm.get('email')?.hasError('required')"></ion-text>
+  <ion-text color="danger" *ngIf="loginForm.get('email')?.hasError('email')">L'email doit être une adresse email
+    valide.</ion-text>
+  <ion-text color="danger" *ngIf="loginForm.get('password')?.hasError('required')"></ion-text>
+  
+  <form id="form" [formGroup]="loginForm">
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="email" type="email" placeholder="entre votre email"></ion-input>
+    </ion-item>
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="password" type="password" placeholder="entre votre password"></ion-input>
+    </ion-item>
+    <ion-button (click)="onButtonClick()" [disabled]="!loginForm.valid" expand="block" shape="round">
+      Login
+    </ion-button>
+  </form>
+</ion-content>
