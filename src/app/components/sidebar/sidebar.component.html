@@ -18,8 +18,9 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic</p>
+    <app-accueil *ngIf="message == 'accueil' "></app-accueil>
+    <app-absences *ngIf="message == 'absences' "></app-absences>
+    <app-cours *ngIf="message=='cours'"></app-cours>
   </div>
 
 </ion-content>

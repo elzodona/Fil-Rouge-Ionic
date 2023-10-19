@@ -19,22 +19,16 @@
             </div>
 
             <ion-list class="menu-items" lines="none">
-                <ion-item>
-                   <ion-icon name="pie-chart-outline"></ion-icon>Dashboard
+                <ion-item (click)="goToAccueil('accueil')">
+                   <ion-icon name="pie-chart-outline"></ion-icon>Accueil
                 </ion-item>
-                <ion-item>
-                    <ion-icon name="browsers-outline"></ion-icon>Post sessions
+                <ion-item (click)="goToAccueil('cours')">
+                    <ion-icon name="browsers-outline"></ion-icon>Cours & Sessions
                 </ion-item>
-                <ion-item class="active">
-                    <ion-icon name="flash"></ion-icon>Live sessions
+                <ion-item (click)="goToAccueil('absences')">
+                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>Absences
                 </ion-item>
-                <ion-item>
-                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>Messages
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="heart-outline"></ion-icon>Locum library
-                </ion-item>
-                <ion-item>
+                <ion-item (click)="logout()">
                     <ion-icon name="exit-outline"></ion-icon>Sign out
                 </ion-item>
             </ion-list>
@@ -45,3 +39,4 @@
     <ion-router-outlet id="main"></ion-router-outlet>
 
 </ion-app>
+

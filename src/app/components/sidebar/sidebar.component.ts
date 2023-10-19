@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { CommunicationService } from 'src/app/services/communication.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
 @Component({
@@ -11,23 +12,14 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 
 export class SidebarComponent {
 
-  constructor(private router: Router, private menuCtrl: MenuController, private sidebarService: SidebarService) { }
+  message: string = 'accueil';
+
+  constructor(private router: Router, private menuCtrl: MenuController, private sidebarService: SidebarService, private communicationService: CommunicationService) { }
 
 
-  get isVisible() {
-    return this.sidebarService.sidebarVisible;
+  ngOnInit() {
+    this.communicationService.currentMessage.subscribe(message => this.message = message);
   }
 
-  navigateTo(page: string) {
-    console.log('hey');
-    
-    this.router.navigateByUrl(page);
-    // this.menuCtrl.toggle();
-  }
-
-  deconnexion() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.router.navigateByUrl('/login');
-  }
+  
 }
