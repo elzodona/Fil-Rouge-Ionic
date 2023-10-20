@@ -15,5 +15,8 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/auth/login`, data);
   }
 
+  getAccessToken(): string | null {
+    return localStorage.getItem('token');
+  }
 
 }

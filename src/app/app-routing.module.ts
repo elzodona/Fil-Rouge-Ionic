@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ExploreContainerComponent } from './explore-container/explore-container.component';
+import { AuthguardGuard } from './_helpers/authguard.guard';
+import { Authguard2Guard } from './_helpers/authguard2.guard';
 
 
 const routes: Routes = [
@@ -10,16 +10,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/loader/loader.module').then( m => m.LoaderPageModule)
   },
   {
-    path: 'eleve/:id',
-    loadChildren: () => import('./pages/folder/folder.module').then(m => m.FolderPageModule)
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
+    canActivate: [Authguard2Guard]
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    path: 'eleve/:id',
+    loadChildren: () => import('./pages/folder/folder.module').then(m => m.FolderPageModule),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'eleve',
-    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule)
+    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule),
+    canActivate: [AuthguardGuard]
   }
 ];
 
