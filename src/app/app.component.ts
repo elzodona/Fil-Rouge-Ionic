@@ -1,7 +1,7 @@
+
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommunicationService } from './services/communication.service';
-import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,20 +10,27 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
- 
-  constructor(private menuCtrl: MenuController, private router: Router, private communicationService: CommunicationService) { }
-  
-  currentPage: string = 'accueil';
 
-  goToAccueil(page: string) {
-    this.communicationService.changeMessage(page);
-    // this.menuCtrl.close();
+  activeItem: string = '';
+
+  public appPages = [
+    { title: 'accueil', url: '/eleve/accueil', icon: 'home' },
+    { title: 'cours', url: '/eleve/cours', icon: 'school' },
+    { title: 'absences', url: '/eleve/absences', icon: 'calendar' },
+  ];
+
+  constructor(private serviceCom: CommunicationService, private router: Router) { }
+
+  getPage(page: any) {
+    this.serviceCom.changeMessage(page)
+    this.activeItem = page;
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.router.navigateByUrl('/login');
   }
 
+
 }
+

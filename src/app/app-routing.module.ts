@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ExploreContainerComponent } from './explore-container/explore-container.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 const routes: Routes = [
   {
@@ -10,20 +10,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/loader/loader.module').then( m => m.LoaderPageModule)
   },
   {
-    path: 'sidebar',
-    component: SidebarComponent
+    path: 'eleve/:id',
+    loadChildren: () => import('./pages/folder/folder.module').then(m => m.FolderPageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'profil',
-    loadChildren: () => import('./pages/profil/profil.module').then( m => m.ProfilPageModule)
-  },
-  {
-    path: 'signup',
-    loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
+    path: 'eleve',
+    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule)
   }
 ];
 

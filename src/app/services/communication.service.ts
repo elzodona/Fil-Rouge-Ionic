@@ -12,4 +12,5 @@ export class CommunicationService {
   changeMessage(message: string) {
     this.messageSource.next(message);
   }
+  
 }

@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
         }
         localStorage.setItem('user', JSON.stringify(response.user));
         localStorage.setItem('token', JSON.stringify(response.token));
-        this.router.navigate(['/sidebar']);
+        this.router.navigate(['/eleve/accueil']);
       },
       (error) => {
         console.error('Erreur de connexion :', error);

@@ -1,42 +1,36 @@
 
 <ion-app>
+    <ion-split-pane contentId="main-content">
+        <ion-menu contentId="main-content" type="overlay">
+            <ion-content>
 
-    <ion-menu menuId="main-menu" contentId="main">
-        <ion-content>
-            <div class="menu-header-bg"></div>
-            <div class="header-content">
-                <img src="../assets/babs.jpg" alt="">
-                <ion-label>
-                    <h2>Babacar Sy</h2>
-                    <p>khalé bu réw</p>
-                </ion-label>
-            </div>
-            <div class="action-button">
-                <ion-button>
-                    <ion-icon slot="start" name="add"></ion-icon>
-                    Add Branch
-                </ion-button>
-            </div>
+                <div class="menu-header-bg"></div>
+                <div class="header-content">
+                    <img src="../assets/babs.jpg" alt="">
+                    <ion-label>
+                        <h2>Babacar Sy</h2>
+                        <p>khalé bu réw</p>
+                    </ion-label>
+                </div>
 
-            <ion-list class="menu-items" lines="none">
-                <ion-item (click)="goToAccueil('accueil')">
-                   <ion-icon name="pie-chart-outline"></ion-icon>Accueil
-                </ion-item>
-                <ion-item (click)="goToAccueil('cours')">
-                    <ion-icon name="browsers-outline"></ion-icon>Cours & Sessions
-                </ion-item>
-                <ion-item (click)="goToAccueil('absences')">
-                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>Absences
-                </ion-item>
-                <ion-item (click)="logout()">
-                    <ion-icon name="exit-outline"></ion-icon>Sign out
-                </ion-item>
-            </ion-list>
+                <ion-list class="menu-items" id="inbox-list">
+                    <ion-menu-toggle auto-hide="false">
+                        <ng-container *ngFor="let p of appPages; let i = index">
+                        <ion-item [ngClass]="{ 'active': activeItem === p.title }" routerDirection="root" (click)="getPage(p.title)" [routerLink]="[p.url]" lines="none"
+                            detail="false" routerLinkActive="selected">
+                            <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'"
+                                [md]="p.icon + '-sharp'"></ion-icon>
+                            <ion-label>{{ p.title }}</ion-label>
+                        </ion-item>
+                        </ng-container>
+                        <ion-item (click)="logout()" routerLink="/login" routerDirection="root" lines="none">
+                            <ion-icon name="exit-outline"></ion-icon>Sign out
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
 
-        </ion-content>
-    </ion-menu>
-
-    <ion-router-outlet id="main"></ion-router-outlet>
-
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
 </ion-app>
-
