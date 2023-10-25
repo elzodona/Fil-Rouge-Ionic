@@ -1,3 +1,82 @@
-<p>
-  absences works!
-</p>
+
+<h1 class="ml-10 bg-[#57b6f5] w-[70%] text-center shadow-2xl shadow-[#57b6f5] text-white rounded-2xl">
+  Sessions terminées
+</h1>
+
+<div class="flex flex-wrap w-full w-[90%] ml-2 mb-4">
+  <div *ngFor="let session of sessions"
+    class="w-[45%] h-[20%] max-h-[20%] m-2 flex flex-col bg-white shadow-xl shadow-[#57b6f5] p-4 mb-4 rounded-lg">
+    <p class="text-xl">{{session.cour.prof.name}}</p>
+    <h2 class="text-xl mt-6 text-center text-white border-2 rounded-2xl bg-[#57b6f5] font-bold mb-2">
+      {{session.cour.module.libelle}}
+    </h2>
+    <ng-container *ngIf="!test">
+    <div class="flex flex-row-reverse mt-4">
+      <button (click)="emarger(session.id)" class="m-1 p-2 text-right shadow-2xl text-white rounded-2xl bg-[#57b6f5]">
+        emargé
+      </button>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="test">
+    <div class="flex flex-row-reverse mt-4">
+      <button class="m-1 p-2 text-black shadow-2xl">
+        déjà emargé
+      </button>
+    </div>
+    </ng-container>
+
+  </div>
+</div>
+
+<ng-container *ngIf="sessions.length == 0">
+  <div class="flex flex-wrap w-full w-[90%] ml-2 mb-4">
+    <h1>Aucune session terminée</h1>
+  </div>
+</ng-container>
+
+<h1 class="ml-10 bg-[#57b6f5] w-[70%] text-center shadow-2xl shadow-[#57b6f5] text-white rounded-2xl">
+  Tableau des absences
+</h1>
+
+<div class="relative overflow-x-auto mt-10 w-[90%] shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-2 py-1">
+          Date
+        </th>
+        <th scope="col" class="px-2 py-1">
+          Module
+        </th>
+        <th scope="col" class="px-2 py-1">
+          Salle
+        </th>
+        <th scope="col" class="px-2 py-1">
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let session of absences" class="bg-white border-b text-sm dark:bg-gray-900 dark:border-gray-700">
+        <th scope="row" class="px-2 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{ separer(session.date_session) }}
+        </th>
+        <td class="px-2 py-1">
+          {{ session.cour.module.libelle }}
+        </td>
+        <td class="px-2 py-1">
+          <ng-container *ngIf="session.salle == null">
+            en ligne
+          </ng-container>
+          <ng-container *ngIf="session.salle">
+            {{session.salle.nom}}
+          </ng-container>
+        </td>
+        <td class="px-2 py-1">
+          <button class="bg-[#57b6f5] rounded-2xl text-white m-2 p-2">justifier</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
